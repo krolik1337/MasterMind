@@ -1,8 +1,10 @@
 ﻿  Board.cpp
 h:\mastermindkrol\mastermindkrol\board.h(8): warning C4309: 'initializing': truncation of constant value
 h:\mastermindkrol\mastermindkrol\board.h(9): warning C4309: 'initializing': truncation of constant value
+h:\mastermindkrol\mastermindkrol\board.h(11): warning C4309: 'initializing': truncation of constant value
   Source.cpp
 h:\mastermindkrol\mastermindkrol\board.h(8): warning C4309: 'initializing': truncation of constant value
 h:\mastermindkrol\mastermindkrol\board.h(9): warning C4309: 'initializing': truncation of constant value
+h:\mastermindkrol\mastermindkrol\board.h(11): warning C4309: 'initializing': truncation of constant value
   Generating Code...
   MasterMindKrol.vcxproj -> H:\MasterMindKrol\Debug\MasterMindKrol.exe

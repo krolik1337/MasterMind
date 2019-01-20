@@ -26,9 +26,33 @@ void Board::changeColor(int color)
 	SetConsoleTextAttribute(hConsole, color);
 }
 
+void Board::drawColors()
+{
+	gotoxy(3, 10);
+	cout << "Kolory kul: ";
+	gotoxy(3, 12);
+	changeColor(8);
+	cout << sphere << "  ";
+	changeColor(9);
+	cout << sphere << "  ";
+	changeColor(10);
+	cout << sphere << "  ";
+	changeColor(11);
+	cout << sphere << "  ";
+	gotoxy(3, 13);
+	changeColor(12);
+	cout << sphere << "  ";
+	changeColor(13);
+	cout << sphere << "  ";
+	changeColor(14);
+	cout << sphere << "  ";
+	changeColor(15);
+	cout << sphere << "  ";
+}
+
 void Board::drawUI()
 {
-	int i; //ramka
+	int i;
 	gotoxy(0, 0);
 	cout << char(201);
 	for (i = 0; i < 78; i++)
@@ -53,6 +77,8 @@ void Board::drawUI()
 	gotoxy(2, 23);
 	for (i = 2; i < 80; i++)
 		cout << char(205);
+	gotoxy(62, 24);
+	cout << "Autor: Kamil Krol";
 }
 
 char Board::drawMenu()
@@ -89,14 +115,17 @@ char Board::drawHowToPlay()
 	cout << "odgadl kolor kuli, a nie jej lokalizacje, oznaczane jest to ";
 	gotoxy(10, 9);
 	cout << "symbolem "<<matchColor<<". Gracz nie wie, ktore kule sa wlasciwe, a ktore nie";
+	gotoxy(10, 10);
+	cout << "Strzalki lewo/prawo zmieniaja aktywna kule, strzalki gora/dol";
 	gotoxy(10, 11);
+	cout << "zmieniaja kolor aktywnej kuli";
+	gotoxy(10, 13);
 	cout << "Nacisnij ESC aby wrocic";
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_ESCAPE))
 		{
-			std::cout << "DUDE! You've pressed the escape key";
-			std::cin.ignore();
+			cin.ignore();
 			return '4';
 		}
 	}
