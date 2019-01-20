@@ -11,15 +11,19 @@ using namespace std; // przerobiæ na tabelê?
 int main()
 {
 	Board board; // deklaracja planszy
-	Game game;
+	char wybor = '4';
+	Game game(wybor);
 	board.drawUI(); // narysowanie ramki
-	char wybor = board.drawMenu();
+	wybor = board.drawMenu();
 	while (wybor != '3')
 	{
 		switch (wybor)
 		{
 		case '1':
-			cout << "Granko";
+			system("cls");
+			board.drawUI();
+			board.drawColors();
+			wybor = game.play();
 			break;
 		case '2':
 			wybor = board.drawHowToPlay();
@@ -37,8 +41,5 @@ int main()
 			break;
 		}
 	}
-	system("cls"); // czzyszczenie okna konsoli
-	cout << "GAME OVER"; // ekran koñcowy
-	//gotoxy(33, 12);
 	return 0;
 }
