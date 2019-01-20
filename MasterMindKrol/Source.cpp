@@ -6,7 +6,7 @@
 #include "Board.h"
 #include "Game.h"
 
-using namespace std; // przerobiæ na tabelê?
+using namespace std;
 
 int main()
 {

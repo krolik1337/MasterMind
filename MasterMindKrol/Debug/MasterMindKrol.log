@@ -1,10 +1,3 @@
-﻿  Board.cpp
-h:\mastermindkrol\mastermindkrol\board.h(8): warning C4309: 'initializing': truncation of constant value
-h:\mastermindkrol\mastermindkrol\board.h(9): warning C4309: 'initializing': truncation of constant value
-h:\mastermindkrol\mastermindkrol\board.h(11): warning C4309: 'initializing': truncation of constant value
-  Source.cpp
-h:\mastermindkrol\mastermindkrol\board.h(8): warning C4309: 'initializing': truncation of constant value
-h:\mastermindkrol\mastermindkrol\board.h(9): warning C4309: 'initializing': truncation of constant value
-h:\mastermindkrol\mastermindkrol\board.h(11): warning C4309: 'initializing': truncation of constant value
-  Generating Code...
+﻿  Game.cpp
+h:\mastermindkrol\mastermindkrol\game.cpp(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   MasterMindKrol.vcxproj -> H:\MasterMindKrol\Debug\MasterMindKrol.exe

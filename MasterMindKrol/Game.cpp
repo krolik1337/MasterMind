@@ -25,15 +25,15 @@ char Game::play()
 {
 	wipeData();
 	generate();
-	gotoxy(1, 1);
-	cout << generatedCode[0] << " " << generatedCode[1] << " " << generatedCode[2] << " " << generatedCode[3];
+	/*gotoxy(1, 1);
+	cout << generatedCode[0] << " " << generatedCode[1] << " " << generatedCode[2] << " " << generatedCode[3];*/
 	changeColor(7);
 	gotoxy(39, 21);
 	cout << indicator;
 	changeColor(8);
 	gotoxy(39, 19);
 	cout << sphere << "  " << sphere << "  " << sphere << "  " << sphere;
-	while (roundCount != 9 && isWin != true)
+	while (roundCount != 10 && isWin != true)
 	{
 		char navigate = 0;
 
@@ -233,9 +233,19 @@ char Game::ifWin()
 	if (roundCount == 1)
 		cout << roundCount << " ruchu!";
 	else cout << roundCount << " ruchach!";
-	gotoxy(24, 15);
+	gotoxy(15, 15);
+	cout << "Szukana kombinacja to: ";
+	changeColor(generatedCode[0] + 7);
+	cout << sphere << " ";
+	changeColor(generatedCode[1] + 7);
+	cout << sphere << " ";
+	changeColor(generatedCode[2] + 7);
+	cout << sphere << " ";
+	changeColor(generatedCode[3] + 7);
+	cout << sphere << " ";
+	gotoxy(24, 17);
 	cout << "Nacisnij ESC aby powrocic do menu";
-	gotoxy(25, 16);
+	gotoxy(25, 18);
 	cout << "lub ENTER by zagrac jeszcze raz";
 	char navigate = 0;
 	while (navigate != KEY_ENTER && navigate != KEY_ESCAPE)
@@ -264,9 +274,19 @@ char Game::ifLost()
 	cout << "Ojej! :(";
 	gotoxy(24, 13);
 	cout << "Tym razem nie udalo Ci sie wygrac";
-	gotoxy(24, 15);
+	gotoxy(15, 15);
+	cout << "Szukana kombinacja to: ";
+	changeColor(generatedCode[0] + 7);
+	cout << sphere << " ";
+	changeColor(generatedCode[1] + 7);
+	cout << sphere << " ";
+	changeColor(generatedCode[2] + 7);
+	cout << sphere << " ";
+	changeColor(generatedCode[3] + 7);
+	cout << sphere << " ";
+	gotoxy(24, 17);
 	cout << "Nacisnij ESC aby powrocic do menu"; 
-	gotoxy(25, 16);
+	gotoxy(25, 18);
 	cout << "lub ENTER by zagrac jeszcze raz";
 	char navigate = 0;
 	while (navigate != KEY_ENTER && navigate != KEY_ESCAPE)

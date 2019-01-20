@@ -50,6 +50,23 @@ void Board::drawColors()
 	cout << sphere << "  ";
 }
 
+void Board::drawTitle()
+{
+	unsigned char t = 178;
+	gotoxy(18, 5);
+	cout << t << "   " << t << "           " << t << "          " << t << "   " << t << "          " << t;
+	gotoxy(18, 6);
+	cout << t << t << " " << t << t << "  " << t << t << "  " << t << t << t << " " << t << t << t << " " << t << t << t << " " << t << " " << t << " " << t << t << " " << t << t << " " << t << " " << t << " " << t << t << "   " << t;
+	gotoxy(18, 7);
+	cout << t << " " << t << " " << t << " " << t << " " << t << "  " << t << "    " << t << "  " << t << " " << t << " " << t << t << "  " << t << " " << t << " " << t << "   " << t << t << " " << t << "   " << t;
+	gotoxy(18, 8);
+	cout << t << "   " << t << " " << t << " " << t << "  " << t << t << t << "  " << t << "  " << t << t << t << " " << t << "   " << t << "   " << t << " " << t << " " << t << "  " << t << " " << t << t << t;
+	gotoxy(18, 9);
+	cout << t << "   " << t << " " << t << " " << t << "    " << t << "  " << t << "  " << t << "   " << t << "   " << t << "   " << t << " " << t << " " << t << "  " << t << " " << t << " " << t;
+	gotoxy(18, 10);
+	cout << t << "   " << t << "  " << t << t << t << " " << t << t << t << "  " << t << "  " << t << t << t << " " << t << "   " << t << "   " << t << " " << t << " " << t << "  " << t << " " << t << t << t;
+}
+
 void Board::drawUI()
 {
 	int i;
@@ -83,15 +100,14 @@ void Board::drawUI()
 
 char Board::drawMenu()
 {
-	gotoxy(34, 10); //powitanie
-	cout << "MasterMind";
-	gotoxy(21, 12);
+	drawTitle();
+	gotoxy(32, 12);
 	cout << "1. Rozpocznij gre";
-	gotoxy(21, 13);
+	gotoxy(34, 13);
 	cout << "2. Jak grac?";
-	gotoxy(21, 14);
+	gotoxy(35, 14);
 	cout << "3. Wyjscie";
-	gotoxy(21, 15);
+	gotoxy(34, 15);
 	cout << "Twoj wybor: ";
 	cin >> wybor;
 	return wybor;
@@ -114,11 +130,11 @@ char Board::drawHowToPlay()
 	gotoxy(10, 8);
 	cout << "odgadl kolor kuli, a nie jej lokalizacje, oznaczane jest to ";
 	gotoxy(10, 9);
-	cout << "symbolem "<<matchColor<<". Gracz nie wie, ktore kule sa wlasciwe, a ktore nie";
+	cout << "symbolem "<<matchColor<<". Gracz nie wie, ktore kule sa wlasciwe, a ktore nie.";
 	gotoxy(10, 10);
 	cout << "Strzalki lewo/prawo zmieniaja aktywna kule, strzalki gora/dol";
 	gotoxy(10, 11);
-	cout << "zmieniaja kolor aktywnej kuli";
+	cout << "zmieniaja kolor aktywnej kuli.";
 	gotoxy(10, 13);
 	cout << "Nacisnij ESC aby wrocic";
 	while (true)
