@@ -19,11 +19,12 @@ int main()
 	{
 		system("cls");
 		board.drawUI(); // narysowanie ramki
-		board.drawMenu();
+		board.drawMenu(wybor);
 		char navigate = 0;
 		while (navigate != KEY_ENTER)
 		{
-			switch ((navigate = _getch())) {
+			switch ((navigate = _getch())) 
+			{
 			case KEY_UP:
 				menu.upChange();
 				break;
@@ -40,9 +41,6 @@ int main()
 		switch (wybor)
 		{
 		case '1':
-			system("cls");
-			board.drawUI();
-			board.drawColors();
 			wybor = game.play();
 			break;
 		case '2':

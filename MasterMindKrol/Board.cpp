@@ -102,7 +102,7 @@ void Board::drawUI()
 	cout << "Autor: Kamil Krol";
 }
 
-void Board::drawMenu()
+void Board::drawMenu(char ch)
 {
 	changeColor(7);
 	drawTitle();
@@ -111,9 +111,22 @@ void Board::drawMenu()
 	gotoxy(37, 16);
 	cout << "Jak grac?";
 	gotoxy(38, 17);
-	cout << "Wyjscie";
-	gotoxy(32, 15);
-	putchar(menuIndicator);
+	cout << "Wyjscie"; 
+	switch (ch)
+	{
+	case '1':
+		gotoxy(32, 15);
+		putchar(menuIndicator);
+		break;
+	case '2':
+		gotoxy(34, 16);
+		putchar(menuIndicator);
+		break;
+	case '3':
+		gotoxy(35, 17);
+		putchar(menuIndicator);
+		break;
+	}
 }
 
 char Board::drawHowToPlay()
@@ -143,7 +156,8 @@ char Board::drawHowToPlay()
 	char navigate = 0;
 	while (navigate != KEY_ESCAPE)
 	{
-		switch ((navigate = _getch())) {
+		switch ((navigate = _getch())) 
+		{
 		case KEY_ESCAPE:
 			choice = '2';
 			return choice;

@@ -23,6 +23,9 @@ void Game::generate()
 
 char Game::play()
 {
+	system("cls");
+	drawUI();
+	drawColors();
 	wipeData();
 	generate();
 	//odkomentowac zeby miec podglad w wylosowany kod
@@ -37,8 +40,8 @@ char Game::play()
 	while (roundCount != 10 && isWin != true)
 	{
 		char navigate = 0;
-
-		switch ((navigate = _getch())) {
+		switch ((navigate = _getch())) 
+		{
 		case KEY_UP:
 			upChange();
 			break;
@@ -55,7 +58,8 @@ char Game::play()
 			enterHit();
 			break;
 		case KEY_ESCAPE:
-			return '4';
+			choice = '1';
+			return choice;
 			break;
 		default:
 			continue;
@@ -191,7 +195,6 @@ void Game::enterHit()
 		saveCode();
 		wholeMatchesCount = colorMatchesCount = 0;
 	}
-
 }
 
 void Game::clearIndicator()
@@ -210,7 +213,7 @@ void Game::saveCode()
 
 void Game::compare()
 {
-	bool inList = false;
+	bool isInList = false;
 	int grab = 0;
 	bool exclude[4]{ false,false,false,false };
 	bool excludeColor[4]{ false,false,false,false };
@@ -232,15 +235,15 @@ void Game::compare()
 				{
 					if ((playerCode[i] == generatedCode[j]) && !excludeColor[j])
 					{
-						inList = true;
+						isInList = true;
 						grab = j;
 					}
 				}
 			}
-			if (inList)
+			if (isInList)
 			{
 				colorMatchesCount++;
-				inList = false;
+				isInList = false;
 				excludeColor[grab] = true;
 			}
 		}
@@ -280,10 +283,10 @@ char Game::ifWin()
 		switch ((navigate = _getch()))
 		{
 		case KEY_ENTER:
-			choice = '1';
+			choice = play();
 			break;
 		case KEY_ESCAPE:
-			choice = '2';
+			choice = '1';
 			break;
 		default:
 			continue;
@@ -322,10 +325,10 @@ char Game::ifLost()
 		switch ((navigate = _getch()))
 		{
 		case KEY_ENTER:
-			choice = '1';
+			choice = play();
 			break;
 		case KEY_ESCAPE:
-			choice = '2';
+			choice = '1';
 			break;
 		default:
 			continue;

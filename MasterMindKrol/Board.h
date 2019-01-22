@@ -22,7 +22,7 @@ public:
 	~Board();
 	char choice; // zmienna zapamietujaca wybor gracza
 	void drawUI(); // rysuje ramke
-	void drawMenu(); // rysuje menu wyboru
+	void drawMenu(char ch); // rysuje menu wyboru
 	char drawHowToPlay(); // rysuje Jak grac
 	void gotoxy(int x, int y); // ustawia kursor w podanych wspolrzednych
 	void changeColor(int color); // zmienia kolor tekstu konsoli
