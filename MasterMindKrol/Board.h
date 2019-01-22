@@ -17,6 +17,7 @@ public:
 	const unsigned char matchColor = 176; // ustawia znak dobrego koloru
 	const unsigned char sphere = 219; // ustawia znak kuli
 	const unsigned char indicator = 248; // ustawia znak wskaznika aktualnej kuli
+	const unsigned char menuIndicator = 62; // ustawia znak wskaznika menu
 	Board(char &wybor);
 	~Board();
 	char choice; // zmienna zapamietujaca wybor gracza

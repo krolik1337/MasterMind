@@ -113,7 +113,7 @@ void Board::drawMenu()
 	gotoxy(38, 17);
 	cout << "Wyjscie";
 	gotoxy(32, 15);
-	putchar(indicator);
+	putchar(menuIndicator);
 }
 
 char Board::drawHowToPlay()

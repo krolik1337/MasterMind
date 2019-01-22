@@ -15,24 +15,24 @@ Menu::~Menu()
 void Menu::upChange()
 {
 	putchar(8);
-	putchar(32);
-	switch (choice)
+	putchar(32); // kasuje poprzedni znacznik wyboru
+	switch (choice) // ustawia nastepny na podstawie poprzedniego
 	{
 	case '1':
 		gotoxy(35, 17);
-		putchar(indicator);
+		putchar(menuIndicator);
 		break;
 	case '2':
 		gotoxy(32, 15);
-		putchar(indicator);
+		putchar(menuIndicator);
 		break;
 	case '3':
 		gotoxy(34, 16);
-		putchar(indicator);
+		putchar(menuIndicator);
 		break;
 	}
 	choice--;
-	if (choice < '1')
+	if (choice < '1') // zamienia zmienna wyboru
 		choice = '3';
 }
 
@@ -44,15 +44,15 @@ void Menu::downChange()
 	{
 	case '1':
 		gotoxy(34, 16);
-		putchar(indicator);
+		putchar(menuIndicator);
 		break;
 	case '2':
 		gotoxy(35, 17);
-		putchar(indicator);
+		putchar(menuIndicator);
 		break;
 	case '3':
 		gotoxy(32, 15);
-		putchar(indicator);
+		putchar(menuIndicator);
 		break;
 	}
 	choice++;
@@ -62,5 +62,5 @@ void Menu::downChange()
 
 char Menu::enterHit()
 {
-	return choice;
+	return choice; // wzraca wybor i przerywa petle
 }

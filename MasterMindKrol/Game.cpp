@@ -25,8 +25,9 @@ char Game::play()
 {
 	wipeData();
 	generate();
-	gotoxy(1, 1);
-	cout << generatedCode[0] << " " << generatedCode[1] << " " << generatedCode[2] << " " << generatedCode[3];
+	//odkomentowac zeby miec podglad w wylosowany kod
+	//gotoxy(1, 1);
+	//cout << generatedCode[0] << " " << generatedCode[1] << " " << generatedCode[2] << " " << generatedCode[3];
 	changeColor(7);
 	gotoxy(39, 21);
 	cout << indicator;
