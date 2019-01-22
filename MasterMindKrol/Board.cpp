@@ -4,8 +4,9 @@ using namespace std;
 
 HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // kolorki
 
-Board::Board()
+Board::Board(char & wybor)
 {
+	choice = wybor;
 }
 
 
@@ -18,7 +19,7 @@ void Board::gotoxy(int x, int y)
 	COORD c;
 	c.X = x - 1;
 	c.Y = y - 1;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c); // kontrola kursora
+	SetConsoleCursorPosition(hConsole, c); // kontrola kursora
 }
 
 void Board::changeColor(int color)
@@ -52,6 +53,7 @@ void Board::drawColors()
 
 void Board::drawTitle()
 {
+	changeColor(10);
 	unsigned char t = 178;
 	gotoxy(18, 5);
 	cout << t << "   " << t << "           " << t << "          " << t << "   " << t << "          " << t;
@@ -65,10 +67,12 @@ void Board::drawTitle()
 	cout << t << "   " << t << " " << t << " " << t << "    " << t << "  " << t << "  " << t << "   " << t << "   " << t << "   " << t << " " << t << " " << t << "  " << t << " " << t << " " << t;
 	gotoxy(18, 10);
 	cout << t << "   " << t << "  " << t << t << t << " " << t << t << t << "  " << t << "  " << t << t << t << " " << t << "   " << t << "   " << t << " " << t << " " << t << "  " << t << " " << t << t << t;
+	changeColor(7);
 }
 
 void Board::drawUI()
 {
+	changeColor(7);
 	int i;
 	gotoxy(0, 0);
 	cout << char(201);
@@ -98,19 +102,18 @@ void Board::drawUI()
 	cout << "Autor: Kamil Krol";
 }
 
-char Board::drawMenu()
+void Board::drawMenu()
 {
+	changeColor(7);
 	drawTitle();
-	gotoxy(32, 12);
-	cout << "1. Rozpocznij gre";
-	gotoxy(34, 13);
-	cout << "2. Jak grac?";
-	gotoxy(35, 14);
-	cout << "3. Wyjscie";
-	gotoxy(34, 15);
-	cout << "Twoj wybor: ";
-	cin >> wybor;
-	return wybor;
+	gotoxy(35, 15);
+	cout << "Rozpocznij gre";
+	gotoxy(37, 16);
+	cout << "Jak grac?";
+	gotoxy(38, 17);
+	cout << "Wyjscie";
+	gotoxy(32, 15);
+	putchar(indicator);
 }
 
 char Board::drawHowToPlay()
@@ -126,23 +129,25 @@ char Board::drawHowToPlay()
 	gotoxy(10, 6);
 	cout << "i sprawdza czy trafil. Kazda kula o wlasciwym kolorze we";
 	gotoxy(10, 7);
-	cout << "wlasciwym miejscu zostaje oznaczona znakiem "<<matchColorPlace<<", a jesli gracz";
+	cout << "wlasciwym miejscu zostaje oznaczona znakiem " << matchColorPlace << ", a jesli gracz";
 	gotoxy(10, 8);
 	cout << "odgadl kolor kuli, a nie jej lokalizacje, oznaczane jest to ";
 	gotoxy(10, 9);
-	cout << "symbolem "<<matchColor<<". Gracz nie wie, ktore kule sa wlasciwe, a ktore nie.";
+	cout << "symbolem " << matchColor << ". Gracz nie wie, ktore kule sa wlasciwe, a ktore nie.";
 	gotoxy(10, 10);
 	cout << "Strzalki lewo/prawo zmieniaja aktywna kule, strzalki gora/dol";
 	gotoxy(10, 11);
 	cout << "zmieniaja kolor aktywnej kuli.";
 	gotoxy(10, 13);
 	cout << "Nacisnij ESC aby wrocic";
-	while (true)
+	char navigate = 0;
+	while (navigate != KEY_ESCAPE)
 	{
-		if (GetAsyncKeyState(VK_ESCAPE))
-		{
-			cin.ignore();
-			return '4';
+		switch ((navigate = _getch())) {
+		case KEY_ESCAPE:
+			choice = '2';
+			return choice;
 		}
 	}
+	return choice;
 }

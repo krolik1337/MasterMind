@@ -3,19 +3,13 @@
 #include <time.h>
 #include "Board.h"
 
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
-#define KEY_ENTER '\r'
-#define KEY_ESCAPE 27
-
 class Game : public Board
 {
 public:
 	Game(char &wybor);
 	~Game();
 	int generatedCode[4]; // wzorzec wylosowany przez komputer
+	int sortedGeneratedCode[4]; // posortowany wzorzec
 	int playerCode[4]{ 1, 1, 1, 1 }; // wzorzec wprowadzony przez gracza
 	int first = 1; // kod pierwszej kuli
 	int second = 1; // kod drugiej kuli
@@ -26,6 +20,7 @@ public:
 	int mover = 0; // pomocny przy nawigacji podczas ustawiania koloru kuli 
 	int wholeMatchesCount = 0; // licznik ile kul jest na wlasciwym miejscu
 	int colorMatchesCount = 0; // licznik ile jest trafionych kolorow
+	char choice; // zmienna zapamietujaca wybor gracza
 
 	void generate(); // generuje wzorzec i zapisuje go do tabeli
 	char play(); // rozpoczyna gre
@@ -41,4 +36,3 @@ public:
 	char ifLost(); // akcja po przegranej
 	void wipeData(); // zeruje zmienne przed nowa gra
 };
-

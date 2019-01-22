@@ -2,9 +2,9 @@
 
 using namespace std;
 
-Game::Game(char &wybor)
+Game::Game(char &wybor) : Board(wybor)
 {
-	wybor = '4';
+	choice = wybor;
 }
 
 
@@ -25,14 +25,14 @@ char Game::play()
 {
 	wipeData();
 	generate();
-	/*gotoxy(1, 1);
-	cout << generatedCode[0] << " " << generatedCode[1] << " " << generatedCode[2] << " " << generatedCode[3];*/
+	gotoxy(1, 1);
+	cout << generatedCode[0] << " " << generatedCode[1] << " " << generatedCode[2] << " " << generatedCode[3];
 	changeColor(7);
 	gotoxy(39, 21);
 	cout << indicator;
 	changeColor(8);
-	gotoxy(39, 19);
-	cout << sphere << "  " << sphere << "  " << sphere << "  " << sphere;
+	gotoxy(36, 19);
+	cout << roundCount << ". " << sphere << "  " << sphere << "  " << sphere << "  " << sphere;
 	while (roundCount != 10 && isWin != true)
 	{
 		char navigate = 0;
@@ -53,6 +53,9 @@ char Game::play()
 		case KEY_ENTER:
 			enterHit();
 			break;
+		case KEY_ESCAPE:
+			return '4';
+			break;
 		default:
 			continue;
 		}
@@ -60,7 +63,7 @@ char Game::play()
 	if (isWin == true)
 		return ifWin();
 	else return ifLost();
-	
+
 }
 
 void Game::upChange()
@@ -181,12 +184,13 @@ void Game::enterHit()
 		}
 		roundCount++;
 		changeColor(8);
-		gotoxy(39, 20 - roundCount);
-		cout << sphere << "  " << sphere << "  " << sphere << "  " << sphere;
+		gotoxy(36, 20 - roundCount);
+		cout << roundCount << ". " << sphere << "  " << sphere << "  " << sphere << "  " << sphere;
 		first = second = third = fourth = 1;
+		saveCode();
 		wholeMatchesCount = colorMatchesCount = 0;
 	}
-	
+
 }
 
 void Game::clearIndicator()
@@ -205,18 +209,39 @@ void Game::saveCode()
 
 void Game::compare()
 {
-	for (int j = 0; j < 4; j++)
+	bool inList = false;
+	int grab = 0;
+	bool exclude[4]{ false,false,false,false };
+	bool excludeColor[4]{ false,false,false,false };
+	for (int i = 0; i < 4; i++)
 	{
-		if (generatedCode[j] == playerCode[j])
-			wholeMatchesCount++;
-		else
+		if (generatedCode[i] == playerCode[i])
 		{
-			for (int i = 0; i < 4; i++)
-				if (generatedCode[j] == playerCode[i])
+			wholeMatchesCount++;
+			exclude[i] = true;
+		}
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (!exclude[i])
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				if (!exclude[j] && i != j)
 				{
-					colorMatchesCount++;
-					break;
+					if ((playerCode[i] == generatedCode[j]) && !excludeColor[j])
+					{
+						inList = true;
+						grab = j;
+					}
 				}
+			}
+			if (inList)
+			{
+				colorMatchesCount++;
+				inList = false;
+				excludeColor[grab] = true;
+			}
 		}
 	}
 }
@@ -233,7 +258,7 @@ char Game::ifWin()
 	if (roundCount == 1)
 		cout << roundCount << " ruchu!";
 	else cout << roundCount << " ruchach!";
-	gotoxy(15, 15);
+	gotoxy(25, 15);
 	cout << "Szukana kombinacja to: ";
 	changeColor(generatedCode[0] + 7);
 	cout << sphere << " ";
@@ -243,6 +268,7 @@ char Game::ifWin()
 	cout << sphere << " ";
 	changeColor(generatedCode[3] + 7);
 	cout << sphere << " ";
+	changeColor(7);
 	gotoxy(24, 17);
 	cout << "Nacisnij ESC aby powrocic do menu";
 	gotoxy(25, 18);
@@ -250,19 +276,19 @@ char Game::ifWin()
 	char navigate = 0;
 	while (navigate != KEY_ENTER && navigate != KEY_ESCAPE)
 	{
-		switch ((navigate = _getch())) 
+		switch ((navigate = _getch()))
 		{
 		case KEY_ENTER:
-			wybor = '1';
+			choice = '1';
 			break;
 		case KEY_ESCAPE:
-			wybor = '4';
+			choice = '2';
 			break;
 		default:
 			continue;
 		}
 	}
-	return wybor;
+	return choice;
 }
 
 char Game::ifLost()
@@ -274,7 +300,7 @@ char Game::ifLost()
 	cout << "Ojej! :(";
 	gotoxy(24, 13);
 	cout << "Tym razem nie udalo Ci sie wygrac";
-	gotoxy(15, 15);
+	gotoxy(25, 15);
 	cout << "Szukana kombinacja to: ";
 	changeColor(generatedCode[0] + 7);
 	cout << sphere << " ";
@@ -284,8 +310,9 @@ char Game::ifLost()
 	cout << sphere << " ";
 	changeColor(generatedCode[3] + 7);
 	cout << sphere << " ";
+	changeColor(7);
 	gotoxy(24, 17);
-	cout << "Nacisnij ESC aby powrocic do menu"; 
+	cout << "Nacisnij ESC aby powrocic do menu";
 	gotoxy(25, 18);
 	cout << "lub ENTER by zagrac jeszcze raz";
 	char navigate = 0;
@@ -294,21 +321,23 @@ char Game::ifLost()
 		switch ((navigate = _getch()))
 		{
 		case KEY_ENTER:
-			wybor = '1';
+			choice = '1';
 			break;
 		case KEY_ESCAPE:
-			wybor = '4';
+			choice = '2';
 			break;
 		default:
 			continue;
 		}
 	}
-	return wybor;
+	return choice;
 }
 
 void Game::wipeData()
 {
 	isWin = false;
 	roundCount = 1;
+	first = second = third = fourth = 1;
+	saveCode();
 	mover = wholeMatchesCount = colorMatchesCount = 0;
 }
