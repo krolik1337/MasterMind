@@ -19,7 +19,7 @@ void Menu::upChange()
 	switch (choice) // ustawia nastepny na podstawie poprzedniego
 	{
 	case '1':
-		gotoxy(35, 17);
+		gotoxy(35, 18);
 		putchar(menuIndicator);
 		break;
 	case '2':
@@ -30,10 +30,15 @@ void Menu::upChange()
 		gotoxy(34, 16);
 		putchar(menuIndicator);
 		break;
+	case '4':
+		gotoxy(31, 17);
+		putchar(menuIndicator);
+		break;
+
 	}
 	choice--;
 	if (choice < '1') // zamienia zmienna wyboru
-		choice = '3';
+		choice = '4';
 }
 
 void Menu::downChange()
@@ -47,16 +52,20 @@ void Menu::downChange()
 		putchar(menuIndicator);
 		break;
 	case '2':
-		gotoxy(35, 17);
+		gotoxy(31, 17);
 		putchar(menuIndicator);
 		break;
 	case '3':
+		gotoxy(35, 18);
+		putchar(menuIndicator);
+		break;
+	case '4':
 		gotoxy(32, 15);
 		putchar(menuIndicator);
 		break;
 	}
 	choice++;
-	if (choice > '3')
+	if (choice > '4')
 		choice = '1';
 }
 

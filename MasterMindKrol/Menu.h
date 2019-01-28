@@ -3,9 +3,10 @@
 
 class Menu : public Board
 {
+private:
+	char choice; // zmienna zapamietujaca wybor gracza
 public:
 	Menu(char &wybor);
-	char choice; // zmienna zapamietujaca wybor gracza
 	~Menu();
 	void upChange(); // akcja przy strzalce w gore
 	void downChange(); // akcja przy strzalce w dol

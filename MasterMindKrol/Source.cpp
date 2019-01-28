@@ -6,6 +6,7 @@
 #include "Board.h"
 #include "Game.h"
 #include "Menu.h"
+#include "Options.h"
 
 using namespace std;
 
@@ -15,7 +16,8 @@ int main()
 	Board board(wybor); // deklaracja planszy
 	Game game(wybor);
 	Menu menu(wybor);
-	while (wybor != '3')
+	Options options(wybor);
+	while (wybor != '4')
 	{
 		system("cls");
 		board.drawUI(); // narysowanie ramki
@@ -47,6 +49,11 @@ int main()
 			board.drawHowToPlay();
 			break;
 		case '3':
+			board.drawOptions();
+			options.setState(1);
+			wybor = options.changes();
+			break;
+		case '4':
 			break;
 		default:
 			continue;

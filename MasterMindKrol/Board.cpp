@@ -70,6 +70,62 @@ void Board::drawTitle()
 	changeColor(7);
 }
 
+void Board::drawOptions()
+{
+	system("cls");
+	drawUI();
+	gotoxy(31, 4);
+	cout << "> Ilosc kolorow";
+	gotoxy(11, 6);
+	cout << "6            7            8             9             10";
+	gotoxy(11, 7);
+	for (int i = 0; i < 56; i++)
+	{
+		if (i == 26)
+			cout << char(206);
+		else cout << char(205);
+	}
+	gotoxy(29, 9);
+	cout << "Maksymalna liczba rund";
+	gotoxy(11, 11);
+	cout << "5    6    7    8    9    10    11    12    13    14   15";
+	gotoxy(11, 12);
+	for (int i = 0; i < 56; i++)
+	{
+		if (i == 20)
+			cout << char(206);
+		else cout << char(205);
+	}
+	gotoxy(13, 14);
+	cout << "Liczba zgadywanych kul";
+	gotoxy(11, 16);
+	cout << "3       4       5       6";
+	gotoxy(11, 17);
+	for (int i = 0; i < 25; i++)
+	{
+		if (i == 8)
+			cout << char(206);
+		else cout << char(205);
+	}
+	gotoxy(43, 14);
+	cout << "Powtarzanie sie kolorow";
+	gotoxy(42, 16);
+	cout << "on                    off";
+	gotoxy(42, 17);
+	for (int i = 0; i < 25; i++)
+	{
+		if (i == 0)
+			cout << char(206);
+		else cout << char(205);
+	}
+	gotoxy(36, 19);
+	cout << "Zapisz";
+	gotoxy(36, 21);
+	cout << "Wyjdz ";
+	gotoxy(32, 4);
+
+}
+
 void Board::drawUI()
 {
 	changeColor(7);
@@ -110,7 +166,9 @@ void Board::drawMenu(char ch)
 	cout << "Rozpocznij gre";
 	gotoxy(37, 16);
 	cout << "Jak grac?";
-	gotoxy(38, 17);
+	gotoxy(34, 17);
+	cout << "Ustawienia gry";
+	gotoxy(38, 18);
 	cout << "Wyjscie"; 
 	switch (ch)
 	{
@@ -123,6 +181,10 @@ void Board::drawMenu(char ch)
 		putchar(menuIndicator);
 		break;
 	case '3':
+		gotoxy(31, 17);
+		putchar(menuIndicator);
+		break;
+	case '4':
 		gotoxy(35, 17);
 		putchar(menuIndicator);
 		break;

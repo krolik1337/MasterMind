@@ -5,9 +5,7 @@
 
 class Game : public Board
 {
-public:
-	Game(char &wybor);
-	~Game();
+private:
 	int generatedCode[4]; // wzorzec wylosowany przez komputer
 	int sortedGeneratedCode[4]; // posortowany wzorzec
 	int playerCode[4]{ 1, 1, 1, 1 }; // wzorzec wprowadzony przez gracza
@@ -21,7 +19,17 @@ public:
 	int wholeMatchesCount = 0; // licznik ile kul jest na wlasciwym miejscu
 	int colorMatchesCount = 0; // licznik ile jest trafionych kolorow
 	char choice; // zmienna zapamietujaca wybor gracza
-
+	int codeLength = 4;
+	int colorCount = 8;
+	int maxRoundCount = 9; // maksymalna ilosc rund
+	bool repeating = true;
+public:
+	Game(char &wybor);
+	~Game();
+	void setMaxRoundCount(int rounds);
+	void setColors(int colors);
+	void setCodeLength(int length);
+	void setRepeating(bool rep);
 	void generate(); // generuje wzorzec i zapisuje go do tabeli
 	char play(); // rozpoczyna gre
 	void upChange(); // akcja przy strzalce w gore

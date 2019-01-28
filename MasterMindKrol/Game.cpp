@@ -12,6 +12,26 @@ Game::~Game()
 {
 }
 
+void Game::setMaxRoundCount(int rounds)
+{
+	maxRoundCount = rounds;
+}
+
+void Game::setColors(int colors)
+{
+	colorCount = colors;
+}
+
+void Game::setCodeLength(int length)
+{
+	codeLength = length;
+}
+
+void Game::setRepeating(bool rep)
+{
+	repeating = rep;
+}
+
 void Game::generate()
 {
 	srand(time(NULL));
