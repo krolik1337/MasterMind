@@ -4,6 +4,10 @@ using namespace std;
 
 HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // kolorki
 
+Board::Board()
+{
+}
+
 Board::Board(char & wybor)
 {
 	choice = wybor;

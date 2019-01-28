@@ -3,16 +3,17 @@
 class Options : public Game
 {
 private:
-	int state = 1;
 	char choice;
+	Game gierka;
+	int state = 1;
 	int colors = 8;
 	int rounds = 9;
 	int toFind = 4;
 	bool repeating = true;
 public:
-	Options(char &wybor);
+	Options(char &wybor, Game &gra);
 	~Options();
-	char changes();
+	Game changes();
 	void setState(int defaultState);
 	void upChange(); // akcja przy strzalce w gore
 	void downChange(); // akcja przy strzalce w dol

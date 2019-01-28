@@ -1,9 +1,10 @@
 #include "Options.h"
 
 
-Options::Options(char &wybor): Game(wybor)
+Options::Options(char &wybor, Game &gra): gierka(wybor)
 {
 	choice = wybor;
+	gierka = gra;
 }
 
 
@@ -11,7 +12,7 @@ Options::~Options()
 {
 }
 
-char Options::changes()
+Game Options::changes()
 {
 	char navigate = 0;
 	while (navigate != KEY_ESCAPE)
@@ -35,7 +36,7 @@ char Options::changes()
 			choice = enterHit();
 			if (state == 6 || state == 5)
 			{
-				return choice;
+				return gierka;
 			}
 			break;
 		}
@@ -351,8 +352,8 @@ char Options::enterHit()
 
 void Options::save()
 {
-	setMaxRoundCount(rounds);
-	setColors(colors);
-	setCodeLength(toFind);
-	setRepeating(repeating);
+	gierka.setMaxRoundCount(rounds);
+	gierka.setColors(colors);
+	gierka.setCodeLength(toFind);
+	gierka.setRepeating(repeating);
 }

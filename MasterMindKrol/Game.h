@@ -6,24 +6,26 @@
 class Game : public Board
 {
 private:
-	int generatedCode[4]; // wzorzec wylosowany przez komputer
-	int sortedGeneratedCode[4]; // posortowany wzorzec
-	int playerCode[4]{ 1, 1, 1, 1 }; // wzorzec wprowadzony przez gracza
+	int codeLength = 4;
+	int *generatedCode; // wzorzec wylosowany przez komputer
+	int *playerCode; // wzorzec wprowadzony przez gracza
 	int first = 1; // kod pierwszej kuli
 	int second = 1; // kod drugiej kuli
 	int third = 1; // kod trzeciej kuli
 	int fourth = 1; // kod czwartej kuli
+	int fifth = 1;
+	int sixth = 1;
 	bool isWin = false; // sprawdza czy wzorce sie zgadzaja	
 	int roundCount = 1; // zmienna odpowiadajaca za licznik rund
 	int mover = 0; // pomocny przy nawigacji podczas ustawiania koloru kuli 
 	int wholeMatchesCount = 0; // licznik ile kul jest na wlasciwym miejscu
 	int colorMatchesCount = 0; // licznik ile jest trafionych kolorow
 	char choice; // zmienna zapamietujaca wybor gracza
-	int codeLength = 4;
 	int colorCount = 8;
 	int maxRoundCount = 9; // maksymalna ilosc rund
 	bool repeating = true;
 public:
+	Game();
 	Game(char &wybor);
 	~Game();
 	void setMaxRoundCount(int rounds);
@@ -43,4 +45,5 @@ public:
 	char ifWin(); // akcja po wygranej
 	char ifLost(); // akcja po przegranej
 	void wipeData(); // zeruje zmienne przed nowa gra
+	Game &operator=(const Game &wzor);
 };

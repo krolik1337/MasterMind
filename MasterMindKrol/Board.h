@@ -15,6 +15,7 @@ class Board
 private:
 	char choice; // zmienna zapamietujaca wybor gracza
 public:
+	Board();
 	Board(char &wybor);
 	~Board();
 	const unsigned char matchColorPlace = 178; // ustawia znak dobrego koloru i miejsca

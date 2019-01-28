@@ -16,7 +16,7 @@ int main()
 	Board board(wybor); // deklaracja planszy
 	Game game(wybor);
 	Menu menu(wybor);
-	Options options(wybor);
+	Options options(wybor, game);
 	while (wybor != '4')
 	{
 		system("cls");
@@ -51,7 +51,8 @@ int main()
 		case '3':
 			board.drawOptions();
 			options.setState(1);
-			wybor = options.changes();
+			game = options.changes();
+			wybor = '3';
 			break;
 		case '4':
 			break;
