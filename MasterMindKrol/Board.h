@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <conio.h>
 
+
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
@@ -32,7 +33,5 @@ public:
 	char drawHowToPlay(); // rysuje Jak grac
 	void gotoxy(int x, int y); // ustawia kursor w podanych wspolrzednych
 	void changeColor(int color); // zmienia kolor tekstu konsoli
-	void drawColors(); // rysuje dostepne kolory
 	void drawTitle(); // rysuje napis tytulowy
-	void drawOptions();
 };

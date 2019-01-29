@@ -21,5 +21,6 @@ public:
 	void rightChange(); // akcja przy strzalce w prawo
 	char enterHit(); // akcja po wcisnieciu ENTER
 	void save();
+	void drawOptions();
 };
 

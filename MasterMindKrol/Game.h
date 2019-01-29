@@ -45,5 +45,6 @@ public:
 	char ifWin(); // akcja po wygranej
 	char ifLost(); // akcja po przegranej
 	void wipeData(); // zeruje zmienne przed nowa gra
+	void drawColors(); // rysuje dostepne kolory
 	Game &operator=(const Game &wzor);
 };

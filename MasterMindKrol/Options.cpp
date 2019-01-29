@@ -1,5 +1,6 @@
 #include "Options.h"
 
+using namespace std;
 
 Options::Options(char &wybor, Game &gra): gierka(wybor)
 {
@@ -149,44 +150,24 @@ void Options::leftChange()
 	{
 	case 1:
 	{
-		switch (colors)
+		if (colors > 6)
 		{
-		case 7:
-		{
-			gotoxy(24, 7);
-			putchar(eraseSelect);
-			gotoxy(11, 7);
-			putchar(select);
-			colors--;
-			break;
-		}
-		case 8:
-		{
-			gotoxy(37, 7);
-			putchar(eraseSelect);
-			gotoxy(24, 7);
-			putchar(select);
-			colors--;
-			break;
-		}
-		case 9:
-		{
-			gotoxy(51, 7);
-			putchar(eraseSelect);
-			gotoxy(37, 7);
-			putchar(select);
-			colors--;
-			break;
-		}
-		case 10:
-		{
-			gotoxy(66, 7);
-			putchar(eraseSelect);
-			gotoxy(51, 7);
-			putchar(select);
-			colors--;
-			break;
-		}
+			if (colors == 7)
+			{
+				gotoxy(11 + (colors - 6) * 14 - 1, 7);
+				putchar(eraseSelect);
+				colors--;
+				gotoxy(11 + (colors - 6) * 14, 7);
+				putchar(select);
+			}
+			else 
+			{
+				gotoxy(11 + (colors - 6) * 14 - 1, 7);
+				putchar(eraseSelect);
+				colors--;
+				gotoxy(11 + (colors - 6) * 14 - 1, 7);
+				putchar(select);
+			}
 		}
 		break;
 	}
@@ -246,44 +227,26 @@ void Options::rightChange()
 	{
 	case 1:
 	{
-		switch (colors)
+		
+		if (colors < 10)
 		{
-		case 6:
-		{
-			gotoxy(11, 7);
-			putchar(eraseSelect);
-			gotoxy(24, 7);
-			putchar(select);
-			colors++;
-			break;
-		}
-		case 7:
-		{
-			gotoxy(24, 7);
-			putchar(eraseSelect);
-			gotoxy(37, 7);
-			putchar(select);
-			colors++;
-			break;
-		}
-		case 8:
-		{
-			gotoxy(37, 7);
-			putchar(eraseSelect);
-			gotoxy(51, 7);
-			putchar(select);
-			colors++;
-			break;
-		}
-		case 9:
-		{
-			gotoxy(51, 7);
-			putchar(eraseSelect);
-			gotoxy(66, 7);
-			putchar(select);
-			colors++;
-			break;
-		}
+			if (colors == 6)
+			{
+				gotoxy(11 + (colors - 6) * 14, 7);
+				putchar(eraseSelect);
+				colors++;
+				gotoxy(11 + (colors - 6) * 14 - 1, 7);
+				putchar(select);
+			}
+			else
+			{
+				gotoxy(11 + (colors - 6) * 14 - 1, 7);
+				putchar(eraseSelect);
+				colors++;
+				gotoxy(11 + (colors - 6) * 14 - 1, 7);
+				putchar(select);
+
+			}
 		}
 		break;
 	}
@@ -356,4 +319,76 @@ void Options::save()
 	gierka.setColors(colors);
 	gierka.setCodeLength(toFind);
 	gierka.setRepeating(repeating);
+}
+
+
+void Options::drawOptions()
+{
+	system("cls");
+	drawUI();
+	gotoxy(31, 4);
+	cout << "> Ilosc kolorow";
+	gotoxy(11, 6);
+	cout << "6            7             8             9            10";
+	gotoxy(11, 7);
+	for (int i = 0; i < 56; i++)
+	{
+		cout << char(eraseSelect);
+	}
+	gotoxy(29, 9);
+	cout << "Maksymalna liczba rund";
+	gotoxy(11, 11);
+	cout << "5    6    7    8    9    10    11    12    13    14   15";
+	gotoxy(11, 12);
+	for (int i = 0; i < 56; i++)
+	{
+		cout << char(eraseSelect);
+	}
+	gotoxy(13, 14);
+	cout << "Liczba zgadywanych kul";
+	gotoxy(11, 16);
+	cout << "3       4       5       6";
+	gotoxy(11, 17);
+	for (int i = 0; i < 25; i++)
+	{
+		cout << char(eraseSelect);
+	}
+	gotoxy(43, 14);
+	cout << "Powtarzanie sie kolorow";
+	gotoxy(42, 16);
+	cout << "on                    off";
+	gotoxy(42, 17);
+	for (int i = 0; i < 25; i++)
+	{
+		cout << char(eraseSelect);
+	}
+	gotoxy(36, 19);
+	cout << "Zapisz";
+	gotoxy(36, 21);
+	cout << "Wyjdz ";
+	if (colors == 6)
+	{
+		gotoxy(11 + (colors - 6) * 14, 7);
+		putchar(select);
+	}
+	else
+	{ 
+		gotoxy(11 + (colors - 6) * 14 - 1, 7);
+		putchar(select);
+	}
+	if (rounds > 10)
+		gotoxy(11 + (rounds - 5) * 5 - (10 - rounds), 12);
+	else
+		gotoxy(11 + (rounds - 5) * 5, 12);
+	putchar(select);
+	gotoxy(11 + (toFind - 3) * 8, 17);
+	putchar(select);
+	if (repeating == false)
+		gotoxy(66, 17);
+	else
+		gotoxy(42, 17);
+	putchar(select);
+
+	gotoxy(32, 4);
+
 }

@@ -13,7 +13,7 @@ using namespace std;
 int main()
 {
 	char wybor = '1';
-	Board board(wybor); // deklaracja planszy
+	Board board( wybor ); // deklaracja planszy
 	Game game(wybor);
 	Menu menu(wybor);
 	Options options(wybor, game);
@@ -49,7 +49,7 @@ int main()
 			board.drawHowToPlay();
 			break;
 		case '3':
-			board.drawOptions();
+			options.drawOptions();
 			options.setState(1);
 			game = options.changes();
 			wybor = '3';

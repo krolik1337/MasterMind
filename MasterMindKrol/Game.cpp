@@ -6,7 +6,7 @@ Game::Game()
 {
 }
 
-Game::Game(char &wybor) : Board(wybor)
+Game::Game(char &wybor)
 {
 	choice = wybor;
 }
@@ -89,12 +89,13 @@ char Game::play()
 	changeColor(7);
 	gotoxy(39, 21);
 	cout << indicator;
-	changeColor(8);
+	changeColor(7);
 	gotoxy(36, 19);
-	cout << roundCount;
+	cout << roundCount <<". " ;
+	changeColor(6);
 	for (int i = 0; i < codeLength; i++)
 	{
-		cout << "  " << sphere;
+		cout << sphere << "  ";
 	}
 	while (roundCount != maxRoundCount +1 && isWin != true)
 	{
@@ -139,42 +140,42 @@ void Game::upChange()
 		first++;
 		if (first > colorCount)
 			first = 1;
-		changeColor(first + colorCount - 1);
+		changeColor(first + 5);
 		cout << sphere;
 		break;
 	case 1:
 		second++;
 		if (second > colorCount)
 			second = 1;
-		changeColor(second + colorCount - 1);
+		changeColor(second + 5);
 		cout << sphere;
 		break;
 	case 2:
 		third++;
 		if (third > colorCount)
 			third = 1;
-		changeColor(third + colorCount - 1);
+		changeColor(third + 5);
 		cout << sphere;
 		break;
 	case 3:
 		fourth++;
 		if (fourth > colorCount)
 			fourth = 1;
-		changeColor(fourth + colorCount - 1);
+		changeColor(fourth + 5);
 		cout << sphere;
 		break;
 	case 4:
 		fifth++;
 		if (fifth > colorCount)
 			fifth = 1;
-		changeColor(fifth + colorCount - 1);
+		changeColor(fifth + 5);
 		cout << sphere;
 		break;
 	case 5:
 		sixth++;
 		if (sixth > colorCount)
 			sixth = 1;
-		changeColor(sixth + colorCount - 1);
+		changeColor(sixth + 5);
 		cout << sphere;
 		break;
 	}
@@ -189,42 +190,42 @@ void Game::downChange()
 		first--;
 		if (first < 1)
 			first = colorCount;
-		changeColor(first + colorCount - 1);
+		changeColor(first + 5);
 		cout << sphere;
 		break;
 	case 1:
 		second--;
 		if (second < 1)
 			second = colorCount;
-		changeColor(second + colorCount - 1);
+		changeColor(second + 5);
 		cout << sphere;
 		break;
 	case 2:
 		third--;
 		if (third < 1)
 			third = colorCount;
-		changeColor(third + colorCount - 1);
+		changeColor(third + 5);
 		cout << sphere;
 		break;
 	case 3:
 		fourth--;
 		if (fourth < 1)
 			fourth = colorCount;
-		changeColor(fourth + colorCount - 1);
+		changeColor(fourth + 5);
 		cout << sphere;
 		break;
 	case 4:
 		fifth--;
 		if (fifth < 1)
 			fifth = colorCount;
-		changeColor(fifth + colorCount - 1);
+		changeColor(fifth + 5);
 		cout << sphere;
 		break;
 	case 5:
 		sixth--;
 		if (sixth < 1)
 			sixth = colorCount;
-		changeColor(sixth + colorCount - 1);
+		changeColor(sixth + 5);
 		cout << sphere;
 		break;
 	}
@@ -252,7 +253,6 @@ void Game::rightChange()
 	cout << indicator;
 }
 
- // dotad jest zmienione, nietestowane
 void Game::enterHit()
 {
 	saveCode();
@@ -267,26 +267,45 @@ void Game::enterHit()
 		changeColor(7);
 		for (i; i < wholeMatchesCount; i++)
 		{
-			gotoxy(56 + i * 2, 20 - roundCount);
+			gotoxy(58 + i * 2, 20 - roundCount);
 			cout << matchColorPlace;
 		}
 		for (int j = 0; j < colorMatchesCount; j++)
 		{
-			gotoxy(56 + i * 2 + j * 2, 20 - roundCount);
+			gotoxy(58 + i * 2 + j * 2, 20 - roundCount);
 			cout << matchColor;
 		}
 		roundCount++;
-		changeColor(8);
-		gotoxy(36, 20 - roundCount);
-		cout << roundCount << ". ";
-		for (int i = 0; i < codeLength; i++)
+		changeColor(7);
+		if (roundCount > 9)
 		{
-			playerCode[i] = 1;
+			gotoxy(35, 20 - roundCount);
+			cout << roundCount << ". ";
+			for (int i = 0; i < codeLength; i++)
+			{
+				playerCode[i] = 1;
+			}
+			for (int i = 0; i < codeLength; i++)
+			{
+				changeColor(6);
+				cout << sphere << "  ";
+			}
 		}
-		for (int i = 0; i < codeLength; i++)
+		else
 		{
-			cout << sphere << "  " ;
+			gotoxy(36, 20 - roundCount);
+			cout << roundCount << ". ";
+			for (int i = 0; i < codeLength; i++)
+			{
+				playerCode[i] = 1;
+			}
+			for (int i = 0; i < codeLength; i++)
+			{
+				changeColor(6);
+				cout << sphere << "  ";
+			}
 		}
+		changeColor(7);
 		first = second = third = fourth = fifth = sixth = 1;
 		saveCode();
 		wholeMatchesCount = colorMatchesCount = 0;
@@ -377,7 +396,7 @@ char Game::ifWin()
 	cout << "Szukana kombinacja to: ";
 	for (int i = 0; i < codeLength; i++)
 	{
-		changeColor(generatedCode[i] + 7);
+		changeColor(generatedCode[i] + 5);
 		cout << sphere << " ";
 	}
 	changeColor(7);
@@ -416,7 +435,7 @@ char Game::ifLost()
 	cout << "Szukana kombinacja to: ";
 	for (int i = 0; i < codeLength; i++)
 	{
-		changeColor(generatedCode[i] + 7);
+		changeColor(generatedCode[i] + 5);
 		cout << sphere << " ";
 	}
 	changeColor(7);
@@ -455,7 +474,7 @@ Game & Game::operator=(const Game & wzor)
 {
 	codeLength = wzor.codeLength;
 	generatedCode = wzor.generatedCode;
-	playerCode = wzor.playerCode;;
+	playerCode = wzor.playerCode;
 	first = wzor.first; 
 	second = wzor.second; 
 	third = wzor.third;
@@ -472,4 +491,23 @@ Game & Game::operator=(const Game & wzor)
 	maxRoundCount = wzor.maxRoundCount; 
 	repeating = wzor.repeating;
 	return *this;
+}
+
+void Game::drawColors()
+{
+	gotoxy(3, 10);
+	cout << "Kolory kul: ";
+	gotoxy(3, 12);
+	int i = 0;
+	for (i; i < colorCount/2; i++)
+	{
+		changeColor(6 + i);
+		cout << sphere << "  ";
+	}
+	gotoxy(3,13);
+	for (i; i < colorCount; i++)
+	{
+		changeColor(6 + i);
+		cout << sphere << "  ";
+	}
 }
