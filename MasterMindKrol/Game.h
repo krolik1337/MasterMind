@@ -6,32 +6,36 @@
 class Game : public Board
 {
 private:
-	int codeLength = 4;
+	int codeLength = 4; // dlugosc szukanego kodu
 	int *generatedCode; // wzorzec wylosowany przez komputer
 	int *playerCode; // wzorzec wprowadzony przez gracza
 	int first = 1; // kod pierwszej kuli
 	int second = 1; // kod drugiej kuli
 	int third = 1; // kod trzeciej kuli
 	int fourth = 1; // kod czwartej kuli
-	int fifth = 1;
-	int sixth = 1;
+	int fifth = 1; // kod piatej kuli
+	int sixth = 1; // kod szostej kuli
 	bool isWin = false; // sprawdza czy wzorce sie zgadzaja	
 	int roundCount = 1; // zmienna odpowiadajaca za licznik rund
 	int mover = 0; // pomocny przy nawigacji podczas ustawiania koloru kuli 
 	int wholeMatchesCount = 0; // licznik ile kul jest na wlasciwym miejscu
 	int colorMatchesCount = 0; // licznik ile jest trafionych kolorow
 	char choice; // zmienna zapamietujaca wybor gracza
-	int colorCount = 8;
+	int colorCount = 8; // liczba kolorow
 	int maxRoundCount = 9; // maksymalna ilosc rund
-	bool repeating = true;
+	bool repeating = true; // powtarzanie sie kolorow
 public:
-	Game();
+	Game(); // konstruktor domyslny
 	Game(char &wybor);
 	~Game();
-	void setMaxRoundCount(int rounds);
-	void setColors(int colors);
-	void setCodeLength(int length);
-	void setRepeating(bool rep);
+	void setMaxRoundCount(int rounds); // ustawia maksymalna liczbe rund
+	void setColors(int colors); // ustawia lcizbe kolorow
+	void setCodeLength(int length); // ustawia dlugosc szukanego kodu
+	void setRepeating(bool rep); // wlacza/wylacza powtarzalnosc kodu
+	int getMaxRoundCount(); // ustawia maksymalna liczbe rund
+	int getColors(); // ustawia lcizbe kolorow
+	int getCodeLength(); // ustawia dlugosc szukanego kodu
+	bool getRepeating(); // wlacza/wylacza powtarzalnosc kodu
 	void generate(); // generuje wzorzec i zapisuje go do tabeli
 	char play(); // rozpoczyna gre
 	void upChange(); // akcja przy strzalce w gore
@@ -46,5 +50,5 @@ public:
 	char ifLost(); // akcja po przegranej
 	void wipeData(); // zeruje zmienne przed nowa gra
 	void drawColors(); // rysuje dostepne kolory
-	Game &operator=(const Game &wzor);
+	Game &operator=(const Game &wzor); // operator przypisania
 };

@@ -26,7 +26,7 @@ public:
 	const unsigned char menuIndicator = 62; // ustawia znak wskaznika menu
 	const unsigned char select = 206; // ustawia znak wyboru opcji
 	const unsigned char eraseSelect = 205; // ustawia znak paska opcji
-	const unsigned char space = 32;
+	const unsigned char space = 32; // ustawia znak spacji
 	
 	void drawUI(); // rysuje ramke
 	void drawMenu(char ch); // rysuje menu wyboru

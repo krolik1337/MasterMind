@@ -14,6 +14,8 @@ Game::Game(char &wybor)
 
 Game::~Game()
 {
+	delete[] generatedCode;
+	delete[] playerCode;
 }
 
 void Game::setMaxRoundCount(int rounds)
@@ -34,6 +36,26 @@ void Game::setCodeLength(int length)
 void Game::setRepeating(bool rep)
 {
 	repeating = rep;
+}
+
+int Game::getMaxRoundCount()
+{
+	return maxRoundCount;
+}
+
+int Game::getColors()
+{
+	return colorCount;
+}
+
+int Game::getCodeLength()
+{
+	return codeLength;
+}
+
+bool Game::getRepeating()
+{
+	return repeating;
 }
 
 void Game::generate()
@@ -378,6 +400,8 @@ void Game::compare()
 			}
 		}
 	}
+	delete[] exclude;
+	delete[] excludeColor;
 }
 
 char Game::ifWin()

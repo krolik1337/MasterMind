@@ -15,6 +15,10 @@ Options::~Options()
 
 Game Options::changes()
 {
+	rounds = gierka.getMaxRoundCount();
+	colors = gierka.getColors();
+	repeating = gierka.getRepeating();
+	toFind = gierka.getCodeLength();
 	char navigate = 0;
 	while (navigate != KEY_ESCAPE)
 	{
@@ -45,6 +49,7 @@ Game Options::changes()
 			continue;
 		}
 	}
+	return gierka;
 }
 
 void Options::setState(int defaultState)
@@ -368,22 +373,22 @@ void Options::drawOptions()
 	cout << "Wyjdz ";
 	if (colors == 6)
 	{
-		gotoxy(11 + (colors - 6) * 14, 7);
+		gotoxy(11 + (gierka.getColors() - 6) * 14, 7);
 		putchar(select);
 	}
 	else
 	{ 
-		gotoxy(11 + (colors - 6) * 14 - 1, 7);
+		gotoxy(11 + (gierka.getColors() - 6) * 14 - 1, 7);
 		putchar(select);
 	}
-	if (rounds > 10)
-		gotoxy(11 + (rounds - 5) * 5 - (10 - rounds), 12);
+	if (gierka.getMaxRoundCount() > 10)
+		gotoxy(11 + (gierka.getMaxRoundCount() - 5) * 5 - (10 - gierka.getMaxRoundCount()), 12);
 	else
-		gotoxy(11 + (rounds - 5) * 5, 12);
+		gotoxy(11 + (gierka.getMaxRoundCount() - 5) * 5, 12);
 	putchar(select);
-	gotoxy(11 + (toFind - 3) * 8, 17);
+	gotoxy(11 + (gierka.getCodeLength() - 3) * 8, 17);
 	putchar(select);
-	if (repeating == false)
+	if (gierka.getRepeating() == false)
 		gotoxy(66, 17);
 	else
 		gotoxy(42, 17);
