@@ -81,10 +81,10 @@ void Game::generate()
 			while (1)
 			{
 				int j = rand() % colorCount + 1;
-				if (temp[j-1] == true)
+				if (temp[j] == true)
 				{
 					generatedCode[i] = j;
-					temp[j-1] = false;
+					temp[j] = false;
 					break;
 				}
 			}
@@ -381,7 +381,7 @@ void Game::compare()
 	{
 		if (!exclude[i])
 		{
-			for (int j = 0; j < codeLength; j++)
+			for (int j = 0; j < 4; j++)
 			{
 				if (!exclude[j] && i != j)
 				{
